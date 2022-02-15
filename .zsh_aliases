@@ -1,0 +1,17 @@
+# Use NeoVim installed locally in the user folder.
+alias vim="~/nvim-osx64/bin/nvim"
+alias nvim="~/nvim-osx64/bin/nvim"
+
+alias gs="git status"
+alias gpp='git pull origin "$(git symbolic-ref --short HEAD)"'
+alias gp='git push origin "$(git symbolic-ref --short HEAD)"'
+alias gcod="git checkout develop"
+alias gcom="git checkout master"
+
+# Dotfiles
+# https://www.atlassian.com/git/tutorials/dotfiles
+# To create a new repo use:
+# git init --bare $HOME/dotfiles
+alias dotfiles='/usr/bin/git --git-dir=$HOME/dotfiles/ --work-tree=$HOME'
+# After creating the repo run:
+# dotfiles config --local status.showUntrackedFiles no
