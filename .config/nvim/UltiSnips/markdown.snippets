@@ -1,0 +1,35 @@
+
+snippet i "Complex number i in mathjax"
+$i$ $0
+endsnippet
+
+snippet x "Unknown x in mathjax"
+$x$ $0
+endsnippet
+
+snippet beg "begin{} / end{}" bA
+\begin{$1}
+$2
+\end{$1}
+$0
+endsnippet
+
+snippet // "Fraction" iA
+\frac{$1}{$2}$0
+endsnippet
+
+snippet img "Centered image" b
+<figure id="figure$1" style="text-align: center">
+<img src="$2"
+     width="$3"
+	 alt="$4" />
+<figcaption>Figure $1: $5</figcaption>
+</figure>
+endsnippet
+
+snippet code "Insert code" b
+{% highlight $1 %}
+${0:${VISUAL}}
+{% endhighlight %}
+endsnippet
+
