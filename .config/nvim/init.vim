@@ -1,10 +1,17 @@
+" Disabling Python 2.
+let g:loaded_python_provider = 0
+let g:python_host_prog = ""
+" Set Python version to a version with neovim Python package installed.
+let g:python3_host_prog = "/usr/local/bin/python3"
+
+" Set <leader> key to ','.
+let mapleader = ","
 
 " List of VIM plugins.
 " To remove any pluggin delete the Plug line from this function, reload your
 " init.vim (`:source %` while editing the file or restart VIM) and call
 " `:PlugClean`.
 call plug#begin("~/.config/nvim/pluggins")
-
     " Add an status bar.
     Plug 'vim-airline/vim-airline'
     Plug 'vim-airline/vim-airline-themes'
@@ -42,12 +49,6 @@ call plug#begin("~/.config/nvim/pluggins")
     " If you have nodejs and yarn.
     Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
 
-    " DEPRECATED: Autocompletion with support for UtilSnips.
-    " Follow the install instructions in:
-    " https://github.com/ycm-core/YouCompleteMe/wiki/Full-Installation-Guide
-    " You need to compile something.
-    "Plug 'ycm-core/YouCompleteMe'
-
     " Tons of syntax highlight with Polyglot.
     " Avoid polyglot in CSV files, I prefer to use rainbow_csv.
     " This configuration should be before `Plug polyglot` or it will be
@@ -69,6 +70,7 @@ call plug#begin("~/.config/nvim/pluggins")
     " linter + types checker.
     " Run :CocInstall coc-snippets to autocomplete with snippet names and show
     " descriptions before executing.
+    " Run :CocInstall coc-json for a JSON linter.
 
     " Add a vim motion based on indents.
     " ai: The current indentation level and the line above
@@ -80,15 +82,16 @@ call plug#begin("~/.config/nvim/pluggins")
 
     " Black Python formatter.
     Plug 'psf/black', { 'branch': 'stable' }
-
 " End the list of vim plugins
 call plug#end()
 
 
 " Add a mapping for the NERDTree command, so you can just type :T to open
 command! T NERDTree
+nnoremap <leader>t :NERDTree<cr>
 " Same for FZF
 command! F FZF
+nnoremap <leader>f :FZF<cr>
 
 " Allow clicks with mouse to move the cursor.
 " Don't use the mouse too much!!
@@ -135,7 +138,9 @@ catch
 endtry
 " Set Airline status bar theme.
 let g:airline_theme='solarized'
-" Activate powerline font for rendering symbols.
+" Flag to render symbols in powerline font.
+" If icons are not working on Mac check you have selected `Use built-in
+" Powerline glyphs`. More info: https://github.com/powerline/fonts/issues/248
 let g:airline_powerline_fonts = 1
 
 " Tab with 4 spaces.
@@ -145,10 +150,10 @@ set shiftwidth=4
 
 " Tab character indicator.
 " Any of these are good options: '|', '¦', '┆', '┊'
-let g:indentLine_char = '¦'
+let g:indentLine_char = "¦"
 
 " Ignore __pycache__ dirs in NERDTree.
-let NERDTreeIgnore = ['__pycache__']
+let NERDTreeIgnore = ["__pycache__", ".pytest_cache"]
 " Show hidden files by default.
 let NERDTreeShowHidden=1
 
@@ -160,26 +165,6 @@ set conceallevel=0
 " More info in: https://vi.stackexchange.com/questions/12520/markdown-in-neovim-which-plugin-sets-conceallevel-2
 let g:indentLine_fileTypeExclude = ['markdown', 'json', 'cards']
 
-" Settings for snippet manager coc-snippets (relies on UltiSnips).
-" Use <C-y> to trigger auto-import.
-imap <expr> <C-j> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-" Use <C-l> for trigger snippet expand.
-imap <C-l> <Plug>(coc-snippets-expand)
-" Use <C-j> for select text for visual placeholder of snippet.
-vmap <C-j> <Plug>(coc-snippets-select)
-" Use <C-j> for jump to next placeholder, it's default of coc.nvim
-let g:coc_snippet_next = '<c-j>'
-" Use <C-k> for jump to previous placeholder, it's default of coc.nvim
-let g:coc_snippet_prev = '<c-k>'
-" Use <C-j> for both expand and jump (make expand higher priority.)
-imap <C-j> <Plug>(coc-snippets-expand-jump)
-
-" Tags.
-" Use notagrelative if storing the tag file inside the ".git" folder.
-set notagrelative
-set tags+=.git/tags
-command! MakeTags !ctags -R -f ./.git/tags .
-
 " Allow find commands to find files in subdirectories.
 " If you are using a fuzzy matching plugin (like fzf) this is not needed.
 "set path+=**
@@ -187,9 +172,6 @@ command! MakeTags !ctags -R -f ./.git/tags .
 " MarkdownPreview plugin can be used in any filetype, not only markdown.
 " Interested in execute the plugin in *.cards filetype.
 let g:mkdp_command_for_global = 1
-
-" Set python version in a venv with the neovim python package installed.
-let g:python3_host_prog = "/Users/guillermofernandez/.nvim/venv/bin/python"
 
 " Spell check in English by default.
 set spell
@@ -207,8 +189,6 @@ set autoread
 let g:ctrlsf_ackprg = 'rg'
 
 " Useful key maps.
-" Set <leader> key to ','.
-let mapleader = ','
 " Delete text without copying.
 nnoremap <leader>d "_d
 vnoremap <leader>d "_d
@@ -217,15 +197,6 @@ vnoremap <leader>p "_dP
 nnoremap <leader>y "+y
 vnoremap <leader>y "+y
 
-" Fold using indents before loading file and manual folding after.
-" FIXME: BufReadPre event not working properly.
-"augroup folding_vimrc
-"  autocmd!
-"  autocmd BufReadPre * setlocal foldmethod=indent
-"  autocmd BufReadPre * echom "Pre Read Buffer!"
-"  autocmd BufWinEnter * if &fdm == 'indent' | setlocal foldmethod=manual | endif
-"  autocmd BufWinEnter * echom "Win Enter Buffer!"
-"augroup END
 " Set folding method to a unique value with the next lines:
 set foldmethod=syntax
 set foldlevelstart=20
@@ -254,43 +225,36 @@ command! -range=% ExtractStringContent :keeppattern <line1>,<line2>s/^.\{-}['"]\
 command! -range=% ExtractString :keeppattern <line1>,<line2>s/^.\{-}\(['"][^"]\{-}['"]\).\{-}$/\1/ | normal <C-o>
 
 " Coc configuration.
-" Navigate completion list with tab and shift-tab.
-inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 " Symbol renaming.
 nmap <leader>rn <Plug>(coc-rename)
-" Formatting selected code.
-xmap <leader>f <Plug>(coc-format-selected)
-nmap <leader>f <Plug>(coc-format-selected)
 " Add `:Format` command to format current buffer.
 command! -nargs=0 Format :call CocAction('format')
 " Add `:OrganizeImports` command for organize imports of the current buffer.
-command! -nargs=0 OrganizeImports :call CocAction('runCommand', 'editor.action.organizeImport')
+command! -nargs=0 SortImports :call CocAction('runCommand', 'editor.action.organizeImport')
 " GoTo code navigation.
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
-" Fix solarized8 colorscheme diagnostic colors.
-function! CocNvimHighlight()
-    highlight CocErrorHighlight ctermfg=Red  guifg=#ff0000
-    highlight CocWarningHighlight ctermfg=Red  guifg=#ff0000
-    highlight CocInfoHighlight ctermfg=Red  guifg=#ff0000
-    highlight CocHintHighlight ctermfg=Red  guifg=#ff0000
-    highlight CocErrorLine ctermfg=Red  guifg=#ff0000
-    highlight CocWarningLine ctermfg=Red  guifg=#ff0000
-    highlight CocInfoLine ctermfg=Red  guifg=#ff0000
-    highlight CocHintLine ctermfg=Red  guifg=#ff0000
-    highlight CocHighlightText  guibg=#111111 ctermbg=223
-    " Avoid different colours when spell errors.
-    highlight clear SpellBad
-    highlight SpellBad gui=undercurl
-endfunction
-autocmd! VimEnter function CocNvimHighlight()
-autocmd! user coc.nvim CocNvimHighlight()
 " Status airline.
 let g:airline#extensions#coc#enabled = 1
+" Navigate completion list with tab and shift-tab.
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+" Settings for snippet manager coc-snippets (relies on UltiSnips).
+" Use <C-j> for jump to next placeholder, it's default of coc.nvim
+"let g:coc_snippet_next = '<c-j>'
+" Use <C-k> for jump to previous placeholder, it's default of coc.nvim
+"let g:coc_snippet_prev = '<c-k>'
+" Use <C-y> to trigger auto-import.
+"inoremap <expr> <C-j> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+" Use <C-l> for trigger snippet expand.
+"imap <C-l> <Plug>(coc-snippets-expand)
+" Use <C-j> for select text for visual placeholder of snippet.
+"vmap <C-j> <Plug>(coc-snippets-select)
+" Use <C-j> for both expand and jump (make expand higher priority.)
+"imap <C-j> <Plug>(coc-snippets-expand-jump)
 
-" Easy way to edit this file.
-nnoremap <leader>econfig :tabfind $MYVIMRC<cr>
-nnoremap <leader>rconfig :source $MYVIMRC<cr>
+" Easy way to edit and source this file.
+nnoremap <leader>econf :tabfind $MYVIMRC<cr>
+nnoremap <leader>sconf :source $MYVIMRC<cr>

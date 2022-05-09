@@ -54,8 +54,6 @@ mkcd ()
 
 # Add home folder to PATH to use iTerm, rg, storageexplorer...
 export PATH=/Users/guillermofernandez/:$PATH
-# Add Python bin user folder
-export PATH=/Users/guillermofernandez/Library/Python/3.8/bin:$PATH
 
 # Activate direnv (autoload .envrc files when changing directory)
 eval "$(direnv hook $SHELL)"
