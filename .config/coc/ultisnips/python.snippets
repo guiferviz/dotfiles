@@ -1,4 +1,3 @@
-
 snippet main "Main definition and if-main" b
 def main():
 	${0:${VISUAL:pass}}
@@ -19,19 +18,10 @@ for ${1:item} in ${2:iterable}:
 	${3:${VISUAL:pass}}
 endsnippet
 
-########
-#  If  #
-########
-
 snippet if "If" b
 if ${1:condition}:
 	${2:${VISUAL:pass}}
 endsnippet
-
-
-########
-#  IO  #
-########
 
 snippet readtxt "Read text file" b
 with open(${1:filename}) as file:
@@ -103,10 +93,6 @@ endsnippet
 snippet readlist "Read integer list from standard input" w
 list(map(int, input().split()))
 endsnippet
-
-###########
-#  Debug  #
-###########
 
 snippet debug "Import and run pdb.set_trace()" w
 import pdb; pdb.set_trace()
