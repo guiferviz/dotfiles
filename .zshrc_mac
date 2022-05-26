@@ -15,3 +15,7 @@ export PATH=$PATH:$(find $HOME/.gem/ruby/*/bin -type d)
 
 # Add home folder to PATH to use iTerm, rg, storageexplorer...
 export PATH=/Users/guillermofernandez/:$PATH
+
+# Use NeoVim installed locally in the user folder.
+alias vim="~/nvim-osx64/bin/nvim"
+alias nvim="~/nvim-osx64/bin/nvim"
