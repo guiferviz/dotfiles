@@ -2,7 +2,7 @@
 let g:loaded_python_provider = 0
 let g:python_host_prog = ""
 " Set Python version to a version with neovim Python package installed.
-let g:python3_host_prog = "/usr/local/bin/python3"
+let g:python3_host_prog = "python3"
 
 " Set <leader> key to ','.
 let mapleader = ","
