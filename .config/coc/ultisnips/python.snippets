@@ -97,3 +97,15 @@ endsnippet
 snippet debug "Import and run pdb.set_trace()" w
 import pdb; pdb.set_trace()
 endsnippet
+
+snippet task "Create a sample task that creates a table" b
+@task
+def ${2:output_table}(${1:input_table}: str, settings: Settings) -> str:
+	df = log_and_run_query(
+		f"""
+			SELECT *
+			FROM {${1:input_table}}
+		"""
+	)
+	return io.save_work_table(df, settings, "${2:output_table}")
+endsnippet
