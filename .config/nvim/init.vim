@@ -153,7 +153,7 @@ set shiftwidth=4
 let g:indentLine_char = "¦"
 
 " Ignore __pycache__ dirs in NERDTree.
-let NERDTreeIgnore = ["__pycache__", ".pytest_cache"]
+let NERDTreeIgnore = ["__pycache__", ".pytest_cache", ".DS_Store"]
 " Show hidden files by default.
 let NERDTreeShowHidden=1
 
