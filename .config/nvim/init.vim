@@ -1,8 +1,21 @@
+" Detect OS.
+if !exists("g:os")
+    if has("win64") || has("win32") || has("win16")
+        let g:os = "Windows"
+    else
+        let g:os = substitute(system('uname'), '\n', '', '')
+    endif
+endif
+
 " Disabling Python 2.
 let g:loaded_python_provider = 0
 let g:python_host_prog = ""
 " Set Python version to a version with neovim Python package installed.
-let g:python3_host_prog = "python3"
+if g:os == "Darwin"
+    let g:python3_host_prog = "/usr/local/bin/python3"
+elseif g:os == "Linux"
+    let g:python3_host_prog = "python3"
+endif
 
 " Set <leader> key to ','.
 let mapleader = ","

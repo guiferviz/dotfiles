@@ -19,3 +19,7 @@ export PATH=/Users/guillermofernandez/:$PATH
 # Use NeoVim installed locally in the user folder.
 alias vim="~/nvim-osx64/bin/nvim"
 alias nvim="~/nvim-osx64/bin/nvim"
+
+# Set default Python version.
+alias python="/usr/local/bin/python3"
+alias python3="/usr/local/bin/python3"
