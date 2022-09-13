@@ -109,3 +109,9 @@ def ${2:output_table}(${1:input_table}: str, settings: Settings) -> str:
 	)
 	return io.save_work_table(df, settings, "${2:output_table}")
 endsnippet
+
+snippet pytestraises "Test if a piece of code raises an exception and check message" b
+with pytest.raises(${1:Exception}) as excinfo:
+	${2:pass}
+assert "${3:exception message}" in str(excinfo.value)
+endsnippet

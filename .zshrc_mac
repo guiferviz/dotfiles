@@ -22,3 +22,9 @@ alias nvim="~/nvim-osx64/bin/nvim"
 
 # Set default Python version.
 alias python3="/usr/local/bin/python3"
+
+# MAC Python certificates.
+# https://stackoverflow.com/questions/40684543/how-to-make-python-use-ca-certificates-from-mac-os-truststore
+CERT_PATH=$(python3 -m certifi)
+export SSL_CERT_FILE=${CERT_PATH}
+export REQUESTS_CA_BUNDLE=${CERT_PATH}

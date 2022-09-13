@@ -28,9 +28,6 @@ fi
 # Fuzzy finder.
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-# Python Poetry.
-source $HOME/.poetry/env
-
 # OS dependent settings.
 if [[ `uname` == "Linux" ]]; then
     source ~/.zshrc_linux
@@ -52,3 +49,7 @@ eval "$(direnv hook $SHELL)"
 autoload -Uz compinit
 zstyle ':completion:*' menu select
 fpath+=~/.zfunc
+
+# Add Poetry >=1.2.0 to the PATH. Binaries from previous versions are in a
+# different path.
+export PATH="/Users/guillermofernandez/.local/bin:$PATH"
