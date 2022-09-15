@@ -95,6 +95,11 @@ call plug#begin("~/.config/nvim/pluggins")
 
     " Black Python formatter.
     Plug 'psf/black', { 'branch': 'stable' }
+
+    " Easy way to align any piece of text.
+    " Really useful for markdown tables. Select your table and type:
+    " :EasyAlign **|
+    Plug 'junegunn/vim-easy-align'
 " End the list of vim plugins
 call plug#end()
 
