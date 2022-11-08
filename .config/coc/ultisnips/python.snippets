@@ -111,7 +111,15 @@ def ${2:output_table}(${1:input_table}: str, settings: Settings) -> str:
 endsnippet
 
 snippet pytestraises "Test if a piece of code raises an exception and check message" b
-with pytest.raises(${1:Exception}) as excinfo:
-	${2:pass}
-assert "${3:exception message}" in str(excinfo.value)
+with pytest.raises(${1:Exception}, match="${2:exception message}"):
+	${3:pass}
+$0
+endsnippet
+
+snippet pysparkF "Import pyspark functional module as F" b
+import pyspark.sql.functions as F
+endsnippet
+
+snippet pysparkT "Import pyspark types module as T" b
+import pyspark.sql.types as T
 endsnippet

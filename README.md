@@ -5,6 +5,7 @@
 
 * Oh My Zsh configuration.
 * NeoVim configuration with UltiSnips.
+* Git Hooks that you will need to copy into your repos if you want to use them.
 * This README :)
 
 These configurations are built to work interchangeably on both Linux and Mac.

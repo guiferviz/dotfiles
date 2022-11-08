@@ -53,3 +53,4 @@ fpath+=~/.zfunc
 # Add Poetry >=1.2.0 to the PATH. Binaries from previous versions are in a
 # different path.
 export PATH="/Users/guillermofernandez/.local/bin:$PATH"
+
