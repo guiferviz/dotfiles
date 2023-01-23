@@ -94,10 +94,6 @@ snippet readlist "Read integer list from standard input" w
 list(map(int, input().split()))
 endsnippet
 
-snippet debug "Import and run pdb.set_trace()" w
-import pdb; pdb.set_trace()
-endsnippet
-
 snippet task "Create a sample task that creates a table" b
 @task
 def ${2:output_table}(${1:input_table}: str, settings: Settings) -> str:
@@ -110,16 +106,26 @@ def ${2:output_table}(${1:input_table}: str, settings: Settings) -> str:
 	return io.save_work_table(df, settings, "${2:output_table}")
 endsnippet
 
-snippet pytestraises "Test if a piece of code raises an exception and check message" b
+snippet pytest_raises "Test if a piece of code raises an exception and check message" b
 with pytest.raises(${1:Exception}, match="${2:exception message}"):
 	${3:pass}
 $0
 endsnippet
 
-snippet pysparkF "Import pyspark functional module as F" b
+snippet spark_import_F "Import pyspark functional module as F" b
 import pyspark.sql.functions as F
 endsnippet
 
-snippet pysparkT "Import pyspark types module as T" b
+snippet spark_import_T "Import pyspark types module as T" b
 import pyspark.sql.types as T
+endsnippet
+
+snippet spark_dataframe "Creates a simple dataframe" w
+spark.createDataFrame(
+	[
+		[0, ],
+		[1, ],
+	],
+	"id int",
+)
 endsnippet

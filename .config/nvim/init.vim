@@ -93,9 +93,6 @@ call plug#begin("~/.config/nvim/pluggins")
     " A vim plugin to improve the project search experience.
     Plug 'jesseleite/vim-agriculture'
 
-    " Black Python formatter.
-    Plug 'psf/black', { 'branch': 'stable' }
-
     " Easy way to align any piece of text.
     " Really useful for markdown tables. Select your table and type:
     " :EasyAlign **|
