@@ -16,12 +16,14 @@ export PATH=$PATH:$(find $HOME/.gem/ruby/*/bin -type d)
 # Add home folder to PATH to use iTerm, rg, storageexplorer...
 export PATH=/Users/guillermofernandez/:$PATH
 
-# Use NeoVim installed locally in the user folder.
-alias vim="~/nvim-osx64/bin/nvim"
-alias nvim="~/nvim-osx64/bin/nvim"
+# Add Homebrew folder to PATH.
+export PATH="${HOMEBREW_PREFIX}/opt/openssl/bin:$PATH"
 
 # Set default Python version.
 alias python3="/usr/local/bin/python3"
+
+# Set NeoVim as default vim.
+alias vim=nvim
 
 # MAC Python certificates.
 # https://stackoverflow.com/questions/40684543/how-to-make-python-use-ca-certificates-from-mac-os-truststore

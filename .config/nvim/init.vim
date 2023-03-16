@@ -255,9 +255,9 @@ nmap <silent> gr <Plug>(coc-references)
 let g:airline#extensions#coc#enabled = 1
 " Disable default UltiSnips key maps to avoid overwrite the coc-snippets options.
 let g:UltiSnipsExpandTrigger = "<nop>"
-" Settings for snippet manager coc-snippets (relies on UltiSnips).
-inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+" Use tab and shift-tab to navigate the completion list.
+inoremap <expr> <Tab> coc#pum#visible() ? coc#pum#next(1) : "\<Tab>"
+inoremap <expr> <S-Tab> coc#pum#visible() ? coc#pum#prev(1) : "\<S-Tab>"
 " Use <C-j> for jump to next placeholder, it's default of coc.nvim
 let g:coc_snippet_next = '<c-j>'
 " Use <C-k> for jump to previous placeholder, it's default of coc.nvim
@@ -267,7 +267,7 @@ vmap <C-j> <Plug>(coc-snippets-select)
 " Both expand and jump using same key (make expand higher priority).
 imap <C-j> <Plug>(coc-snippets-expand-jump)
 " Use <leader>x for convert visual selected code to snippet
-xmap <leader>x  <Plug>(coc-convert-snippet)
+xmap <leader>x <Plug>(coc-convert-snippet)
 
 " Easy way to edit and source this file.
 nnoremap <leader>econf :tabfind $MYVIMRC<cr>
