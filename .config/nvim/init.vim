@@ -75,7 +75,8 @@ call plug#begin("~/.config/nvim/pluggins")
     " Some other config variables are set down.
 
     " Install fzf for fuzy search. I think you need to install the tool first.
-    Plug 'junegunn/fzf'
+    Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+    Plug 'junegunn/fzf.vim'
 
     " COC autocomplete.
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -179,10 +180,6 @@ set conceallevel=0
 " filetypes.
 " More info in: https://vi.stackexchange.com/questions/12520/markdown-in-neovim-which-plugin-sets-conceallevel-2
 let g:indentLine_fileTypeExclude = ['markdown', 'json', 'cards']
-
-" Allow find commands to find files in subdirectories.
-" If you are using a fuzzy matching plugin (like fzf) this is not needed.
-"set path+=**
 
 " MarkdownPreview plugin can be used in any filetype, not only markdown.
 " Interested in execute the plugin in *.cards filetype.
