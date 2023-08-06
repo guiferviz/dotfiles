@@ -108,6 +108,8 @@ nnoremap <leader>t :NERDTree<cr>
 " Same for FZF
 command! F FZF
 nnoremap <leader>f :FZF<cr>
+" Searching in files with FZF and RG (ripgrep).
+nnoremap <leader>j :Rg<cr>
 
 " Allow clicks with mouse to move the cursor.
 " Don't use the mouse too much!!
@@ -213,10 +215,11 @@ vnoremap <leader>y "+y
 set foldmethod=syntax
 set foldlevelstart=20
 
-" Execute current selection in a Python interpreter.
-vnoremap <leader>e :w !python<CR>
 " Execute current selection in a Python interpreter replacing output.
-vnoremap <F5> :!python<CR>
+" The command is using the default python3 executable defined in a variable.
+" If you do not want to use a variable we can just define the command as:
+" vnoremap <leader>e :!python<CR>
+vnoremap <leader>e :!<c-r>=g:python3_host_prog<CR><CR>
 
 " Config vim-markdown included in polyglot.
 let g:vim_markdown_math = 1
