@@ -54,3 +54,5 @@ fpath+=~/.zfunc
 # different path.
 export PATH="/Users/guillermofernandez/.local/bin:$PATH"
 
+
+. "$HOME/.cargo/env"

@@ -4,6 +4,11 @@ alias gpp='git pull origin "$(git symbolic-ref --short HEAD)"'
 alias gp='git push origin "$(git symbolic-ref --short HEAD)"'
 alias gcod="git checkout develop"
 alias gcom="git checkout master"
+alias pr="poetry run"
+alias prv="poetry run nvim"
+alias prn="poetry run nvim"
+alias prp="poetry run python"
+alias prpt="poetry run pytest"
 
 # Dotfiles
 # https://www.atlassian.com/git/tutorials/dotfiles
