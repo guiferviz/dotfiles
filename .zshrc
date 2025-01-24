@@ -106,3 +106,15 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+
+# OS dependent settings.
+if [[ `uname` == "Linux" ]]; then
+    source ~/.zshrc_linux
+elif [[ `uname` == "Darwin" ]]; then
+    source ~/.zshrc_mac
+else
+    echo 'Unknown OS!'
+fi
+
+# Load aliases.
+source ~/.zsh_aliases
