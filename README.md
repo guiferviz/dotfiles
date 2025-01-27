@@ -3,12 +3,10 @@
 
 ## What does this dotfiles includes?
 
+* Aliases.
 * Oh My Zsh configuration.
-* NeoVim configuration with UltiSnips.
-* Git Hooks that you will need to copy into your repos if you want to use them.
+* LazyVim configuration.
 * This README :)
-
-These configurations are built to work interchangeably on both Linux and Mac.
 
 
 ## Set-up on a new computer
@@ -85,5 +83,3 @@ remote: Resolving deltas: 100% (1/1), completed with 1 local object.
 To github.com:guiferviz/dotfiles.git
    a20be96..6fb7674  main -> main
 ```
-
-This README is now in Github and can be fetched from any other PC.
