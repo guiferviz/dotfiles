@@ -10,10 +10,7 @@ alias prn="poetry run nvim"
 alias prp="poetry run python"
 alias prpt="poetry run pytest"
 
-# Dotfiles
-# https://www.atlassian.com/git/tutorials/dotfiles
-# To create a new repo use:
-# git init --bare $HOME/dotfiles
+# Dotfiles.
+# Refer to https://github.com/guiferviz/dotfiles/tree/main to learn how to use
+# this alias.
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
-# After creating the repo run:
-# dotfiles config --local status.showUntrackedFiles no
