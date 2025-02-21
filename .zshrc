@@ -42,3 +42,8 @@ source ~/.zsh_aliases
 if [[ -f ~/.zshrc_private ]]; then
     source ~/.zshrc_private
 fi
+
+##################
+# Enable direnv. #
+##################
+eval "$(direnv hook zsh)"
